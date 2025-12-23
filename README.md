@@ -108,3 +108,61 @@ By letting each vehicle calculate its own insurance, new vehicle types can be ad
 
 ### Interview One-Liner
 Open–Closed Principle means a class should allow adding new functionality without modifying its existing code.
+
+------------------------------------------------------------------------
+
+## L — Liskov Substitution Principle (LSP)
+
+### Definition
+Objects of a superclass should be replaceable with objects of its subclasses without affecting the correctness of the program.
+
+---
+
+### Explanation
+If a class B is a subclass of class A, then objects of class A should be able to be replaced with objects of class B without breaking the application.
+
+This means a child class should not change the expected behavior of the parent class.
+Subclasses must honor the contract defined by the base class.
+
+---
+
+### Real-Life Example
+Shape System
+- Rectangle → Has width and height
+- Square → Special type of rectangle
+
+Problem  
+If a `Square` overrides setters in a way that changes how width and height behave, then code written for `Rectangle` may break when a `Square` object is used.
+
+Correct Design  
+Design the hierarchy so that substituting a subclass does not alter expected behavior, or separate incompatible behaviors into different abstractions.
+
+---
+
+### Benefit
+- Ensures reliable inheritance
+- Prevents unexpected runtime bugs
+- Improves code correctness
+- Makes systems easier to extend and refactor
+
+---
+
+### Applying LSP
+- Ensure subclasses do not weaken preconditions
+- Ensure subclasses do not strengthen postconditions
+- Do not remove or alter expected behavior of parent classes
+- Prefer composition over inheritance when behavior differs
+
+---
+
+### Key Points to Remember
+- LSP is about behavior, not just method signatures
+- Violating LSP often leads to subtle bugs
+- Subclasses must fully honor parent class contracts
+- Incorrect inheritance is a common cause of LSP violations
+- LSP is essential for safe polymorphism
+
+---
+
+### Interview One-Liner
+Liskov Substitution Principle means that a subclass should be usable anywhere its parent class is expected without breaking the program.
