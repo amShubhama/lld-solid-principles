@@ -166,3 +166,90 @@ Design the hierarchy so that substituting a subclass does not alter expected beh
 
 ### Interview One-Liner
 Liskov Substitution Principle means that a subclass should be usable anywhere its parent class is expected without breaking the program.
+
+------------------------------------------------------------------------
+
+## I — Interface Segregation Principle (ISP)
+
+### Definition
+No client should be forced to depend on methods it does not use.
+
+---
+
+### Explanation
+The Interface Segregation Principle states that instead of creating large, general-purpose interfaces,
+we should create smaller, more specific interfaces.
+
+Clients should only know about the methods that are relevant to them.
+This avoids unnecessary dependencies and reduces the impact of changes.
+
+---
+
+### Real-Life Example
+Printer System
+- Simple printer → Only prints documents
+- Advanced printer → Prints, scans, and faxes
+
+Bad Design  
+A single `Printer` interface forces all implementations to provide `print()`, `scan()`, and `fax()`,
+even if a basic printer does not support scanning or faxing.
+
+Good Design  
+Split the interface into smaller interfaces like `Printable`, `Scannable`, and `Faxable`,
+so classes implement only what they need.
+
+---
+
+👤 User Management System
+
+Different users have different capabilities:
+- Admin → Can create users, delete users, generate reports
+- Regular User → Can view profile and update details
+- Guest User → Can only view public information
+
+Bad Design  
+A single `User` interface forces all user types to implement:
+- `createUser()`
+- `deleteUser()`
+- `generateReport()`
+- `viewProfile()`
+
+Even Guest users must implement admin-related methods they never use.
+
+Good Design  
+Split the interface into smaller, role-specific interfaces:
+- `AdminActions`
+- `UserActions`
+- `ViewOnlyActions`
+
+Each user type implements only the interfaces relevant to them.
+
+---
+
+### Benefit
+- Reduces unnecessary dependencies
+- Improves code flexibility
+- Easier to understand and maintain
+- Prevents empty or unsupported method implementations
+
+---
+
+### Applying ISP
+- Create small, focused interfaces
+- Avoid “fat” interfaces
+- Clients should depend only on what they use
+- Prefer multiple specific interfaces over one general interface
+
+---
+
+### Key Points to Remember
+- ISP is about client-specific interfaces
+- Large interfaces often indicate poor design
+- Violating ISP leads to unused or empty methods
+- ISP helps achieve loose coupling
+- ISP works best with SRP and DIP
+
+---
+
+### Interview One-Liner
+Interface Segregation Principle means that a class should not be forced to implement interfaces it does not use.
